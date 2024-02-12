@@ -2,7 +2,7 @@
 
 ---
 
-### Data Ssience Projects
+### Data Science Projects
 
 [IMDB Recommender Engine](/sample_page)<br>
 <img src="images/IMDBthumbnail.jpg?raw=true"/>
