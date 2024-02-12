@@ -17,8 +17,8 @@
 **_To be populated_**
 
 1. [IMDB non-commercial datasets](https://developer.imdb.com/non-commercial-datasets/)
-2. Movie Revenue Dataset (scraped from www.boxofficemojo.com)
-3. Movie Ratings Dataset (scraped from https://www.imdb.com/)
+2. Movie Revenue Dataset (df_revenue - scraped from www.boxofficemojo.com)
+3. Movie Ratings Dataset (df_ratings - scraped from https://www.imdb.com/)
 <br><br>
 The following shows a fact table of the datasets used:
 <br><br>
