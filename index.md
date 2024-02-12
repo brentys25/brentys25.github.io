@@ -18,10 +18,6 @@ This project aimed to explore the intersection of r/statistics and r/machinelear
 The methods used involved scraping data using the PRAW API as well as **requests** and **beautifulsoup**, visualizing data using **matplotlib** and **seaborn**, tokenizing post contents using **TfidfVectorizer**, and applying **KMeans** clustering to group the posts.
 
 ---
-[Project 3 Title](http://example.com/)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
-
----
 
 ### Category Name 2
 
