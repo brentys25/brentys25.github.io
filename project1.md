@@ -36,7 +36,13 @@ if (isAwesome){
 ### 3. Recommender Engines
 **_To be populated_**
 
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+```python3
+if (isAwesome){
+  return true
+}
+```
+
+<img src="images/model.jpg?raw=true"/>
 
 ### 4. Conclusion and Future Work
 **_To be populated_**
