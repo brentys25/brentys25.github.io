@@ -6,12 +6,12 @@
 2. To build recommender engines to provide recommendations of movies based on user inputs
 
 **Technologies Used**:
-<font color = 'red'> To be populated </font>
+**_To be populated_**
 
 ## Project Outcomes
 
 ### 1. Datasets Used
-<font color = 'red'> To be populated </font>
+**_To be populated_**
 
 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
 
@@ -22,7 +22,7 @@ if (isAwesome){
 ```
 
 ### 2. Data Analysis & Key Insights
-<font color = 'red'> To be populated </font>
+**_To be populated_**
 
 ```python3
 if (isAwesome){
@@ -31,12 +31,12 @@ if (isAwesome){
 ```
 
 ### 3. Recommender Engines
-<font color = 'red'> To be populated </font>
+**_To be populated_**
 
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ### 4. Conclusion and Future Work
-<font color = 'red'> To be populated </font>
+**_To be populated_**
 
 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
 
