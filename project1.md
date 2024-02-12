@@ -128,8 +128,13 @@ recommended_movies = recommended_movies.iloc[:3]
 ```
 
 ### 4. Conclusion and Future Work
-**_To be populated_**
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+- Refinement of collaborative filtering model<br>
+Retraining of user-based collaborative filtering model using the Movie Lens 20m dataset.
+
+- Refinement of Streamlit UI<br>
+Repositioning/adding pages and elements in interactive Streamlit web app
+
+
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
