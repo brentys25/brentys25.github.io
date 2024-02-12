@@ -31,11 +31,20 @@ The following shows a fact table of the datasets used (for source 1 to 3):
 ### 2. Data Analysis & Key Insights
 **_To be populated_**
 
-```python3
-if (isAwesome){
-  return true
-}
-```
+1. **There has been a steady decline of total voters in IMDb**
+<img src="images/P1_insight1.png?raw=true"/>
+
+2. **Preference for certain genres have changed over the years**
+<img src="images/P1_insight2_1.png?raw=true"/>
+<img src="images/P1_insight2_2.png?raw=true"/>
+
+3. Revenue figures for successful diretors can rake up to billions of dollars
+<img src="images/P1_insight3.png?raw=true"/>
+
+4. Revenues took a hit during covid,
+
+
+<img src="images/model.jpg?raw=true"/>
 
 ### 3. Recommender Engines
 **_To be populated_**
