@@ -4,13 +4,13 @@
 
 ### Category Name 1
 
-[IMDB Recommender Engine]{: style="font-size: 12px;"}(/sample_page)
+[IMDB Recommender Engine](/sample_page)
 <img src="images/IMDBthumbnail.jpg?raw=true"/>
 <br>
 This project aims to address the paradox of choice in the movie industry by developing two recommender engines, one based on non-personalized attributes and the other utilizing user-based collaborative filtering. The recommender engines utilize cosine similarity algorithms and TensorFlow-based user-based collaborative filtering to provide personalized movie recommendations, incorporating factors such as movie popularity, ratings, and film age to enhance decision-making processes for users. The project also includes exploratory data analysis on IMDb and Movie Lens 1m datasets to uncover insights relevant to stakeholders in the movie industry.
 
 ---
-[Project 2 Title](/pdf/sample_presentation.pdf)
+[Project 2 Title](/page_template_proj_2)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
