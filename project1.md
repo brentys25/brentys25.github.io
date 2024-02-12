@@ -37,9 +37,51 @@ if (isAwesome){
 **_To be populated_**
 
 ```python3
-if (isAwesome){
-  return true
-}
+K = 10
+mu = df_train['rating'].mean()
+epochs=100
+reg = 0.1
+
+# keras model
+u = Input(shape=(1,))
+m = Input(shape=(1,))
+u_embedding = Embedding(N, K, embeddings_regularizer=l2(reg))(u) # (N, 1, K)
+m_embedding = Embedding(M, K, embeddings_regularizer=l2(reg))(m) # (N, 1, K)
+u_embedding = Flatten()(u_embedding) # (N, K)
+m_embedding = Flatten()(m_embedding) # (N, K)
+x = Concatenate()([u_embedding, m_embedding]) # (N, 2K)
+
+# the neural network
+x = Dense(1000)(x)
+x = Activation('relu')(x)
+x = Dropout(0.5)(x)
+x = Dense(500)(x)
+x = Dropout(0.5)(x)
+x = Dense(250)(x)
+x = BatchNormalization()(x)
+x = Activation('relu')(x)
+x = Dense(1)(x)
+
+early_stopping = EarlyStopping(monitor='val_loss', patience=5)
+
+model = Model(inputs=[u, m], outputs=x)
+model.compile(
+  loss='mse',
+  optimizer='adam',
+  metrics=['mse'],
+)
+
+r = model.fit(
+  x=[df_train.user_id.values, df_train.movie_id.values],
+  y=df_train.rating.values - mu,
+  epochs=epochs,
+  callbacks = [early_stopping],
+  batch_size=128,
+  validation_data=(
+    [df_test.user_id.values, df_test.movie_id.values],
+    df_test.rating.values - mu
+  )
+)
 ```
 
 <img src="images/model.jpg?raw=true"/>
