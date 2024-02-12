@@ -2,16 +2,20 @@
 
 ---
 
-### Category Name 1
+### Data Ssience Projects
 
 [IMDB Recommender Engine](/sample_page)
 <img src="images/IMDBthumbnail.jpg?raw=true"/>
-<br>
-This project aims to address the paradox of choice in the movie industry by developing two recommender engines, one based on non-personalized attributes and the other utilizing user-based collaborative filtering. The recommender engines utilize cosine similarity algorithms and TensorFlow-based user-based collaborative filtering to provide personalized movie recommendations, incorporating factors such as movie popularity, ratings, and film age to enhance decision-making processes for users. The project also includes exploratory data analysis on IMDb and Movie Lens 1m datasets to uncover insights relevant to stakeholders in the movie industry.
+<br><br>
+This project aims perform data analysis of the IMDB movies, as well as develop two recommender engines, one based on non-personalized attributes and the other utilizing user-based collaborative filtering. 
+The methods used involves data manipulation and visualization using **pandas**, **matplotlib** and **seaborn**, and building a collaborative filtering model using **Tensorflow**.
 
 ---
-[Project 2 Title](/page_template_proj_2)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+[Exploring the Intersection of Statistics and Machine Learning through Subreddit Analysis](/page_template_proj_2)
+<img src="images/reddit_logo.png?raw=true"/>
+<br><br>
+This project aimed to explore the intersection of r/statistics and r/machinelearning through 2000 Reddit posts scrapped using the PRAW API.
+The methods used involved scraping data using the PRAW API as well as **requests** and **beautifulsoup**, visualizing data using **matplotlib** and **seaborn**, tokenizing post contents using **TfidfVectorizer**, and applying **KMeans** clustering to group the posts.
 
 ---
 [Project 3 Title](http://example.com/)
