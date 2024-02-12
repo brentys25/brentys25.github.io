@@ -19,8 +19,10 @@
 1. [IMDB non-commercial datasets](https://developer.imdb.com/non-commercial-datasets/)
 2. Movie Revenue Dataset (df_revenue - scraped from www.boxofficemojo.com)
 3. Movie Ratings Dataset (df_ratings - scraped from https://www.imdb.com/)
+4. [Movie Lens 1m Dataset](https://grouplens.org/datasets/movielens/1m/)
 <br><br>
-The following shows a fact table of the datasets used:
+For the scraping of ratings, due to the limitations in computational resources, I was not able to complete the scraping of the revenues and ratings of all the entries in dataset #1. Hence, to train the recommender engine, I used the Movie Lens 1m Dataset, which was more readily available.<br><br>
+The following shows a fact table of the datasets used (for source 1 to 3):
 <br><br>
 
 <img src="images/fact_table.png?raw=true"/>
@@ -36,6 +38,7 @@ if (isAwesome){
 
 ### 3. Recommender Engines
 **_To be populated_**
+I 
 
 ```python3
 K = 10
