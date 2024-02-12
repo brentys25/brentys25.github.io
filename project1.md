@@ -16,13 +16,14 @@
 ### 1. Datasets Used
 **_To be populated_**
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+1. [IMDB non-commercial datasets](https://developer.imdb.com/non-commercial-datasets/)
+2. Movie Revenue Dataset (scraped from www.boxofficemojo.com)
+3. Movie Ratings Dataset (scraped from https://www.imdb.com/)
+<br><br>
+The following shows a fact table of the datasets used:
+<br><br>
 
-```python3
-if (isAwesome){
-  return true
-}
-```
+<img src="images/fact_table.png?raw=true"/>
 
 ### 2. Data Analysis & Key Insights
 **_To be populated_**
