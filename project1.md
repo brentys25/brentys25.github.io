@@ -29,7 +29,6 @@ The following shows a fact table of the datasets used (for source 1 to 3):
 <img src="images/fact_table.png?raw=true"/>
 
 ### 2. Data Analysis & Key Insights
-**_To be populated_**
 
 1. **There has been a steady decline of total voters in IMDb**
 <img src="images/P1_insight1.png?raw=true"/>
@@ -41,13 +40,12 @@ The following shows a fact table of the datasets used (for source 1 to 3):
 3. Revenue figures for successful diretors can rake up to billions of dollars
 <img src="images/P1_insight3.png?raw=true"/>
 
-4. Revenues took a hit during covid,
+4. Revenues took a hit during covid, but some movie genres see rebounds whereas some stayed flat
 
-
-<img src="images/model.jpg?raw=true"/>
+<img src="images/P1_insight4.png?raw=true"/>
 
 ### 3. Recommender Engines
-**_To be populated_**
+
  
 - Collaborative Filtering model with Tensorflow
 This code segment builds a collaborative filtering neural network using Tensorflow/Keras for
