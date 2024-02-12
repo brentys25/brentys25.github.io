@@ -39,8 +39,12 @@ if (isAwesome){
 
 ### 3. Recommender Engines
 **_To be populated_**
-I 
-
+ 
+- Collaborative Filtering model with Tensorflow
+This code segment builds a collaborative filtering neural network using Tensorflow/Keras for
+recommendation systems. It utilises user and movie embeddings, concatenated and processed through dense layers with ReLU activations and dropout regularization.<br>
+This model was trained to predict movie ratings and aims to minimize the mean squared error loss.
+ 
 ```python3
 K = 10
 mu = df_train['rating'].mean()
@@ -90,6 +94,31 @@ r = model.fit(
 ```
 
 <img src="images/model.jpg?raw=true"/>
+
+- Cosine-similarity model
+This second cosine-similarity model takes inputs from users through a Streamlit interface of the movies they enjoyed watching, and saves it in variable __watched_features__. <br>
+It then compares the selected features with the features in the IMDB dataframe, and then shortlists the top 20 movies most similar to the movies inputted. These 20 movies are then sorted in accordance to descending average ratings and recommendation propensity (a metric engineered from average ratings and the age of the movie. The higher the recommendation propensity, the more recent and also popular the movie is). The user will then be recommended with the top 3 selections.
+
+```python3
+watched_features = rec_df[rec_df.index.isin(watched_movie_ids)].drop(['primaryTitle', 'popularity_score', 'recommendation_propensity'], axis=1)
+
+features = rec_df.drop(['primaryTitle', 'popularity_score', 'recommendation_propensity'], axis=1)
+
+similarity_to_watched = cosine_similarity(features, watched_features)
+average_similarity = similarity_to_watched.mean(axis=1)
+
+# Set the similarity of watched movies to a low value
+average_similarity[rec_df.index.isin(watched_movie_ids)] = -1
+
+# Get the indices of the movies with the top 5 highest average similarity
+recommended_indices = average_similarity.argsort()[-20:][::-1]
+
+# Get the movie IDs of the recommended movies
+recommended_movie_ids = rec_df.index[recommended_indices]
+recommended_movies = rec_df.loc[recommended_movie_ids].sort_values(['recommendation_propensity','averageRating'],ascending=False)
+recommended_movies = recommended_movies[recommended_movies['averageRating']>=5]
+recommended_movies = recommended_movies.iloc[:3]
+```
 
 ### 4. Conclusion and Future Work
 **_To be populated_**
