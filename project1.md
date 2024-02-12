@@ -47,7 +47,7 @@ The following shows a fact table of the datasets used (for source 1 to 3):
 ### 3. Recommender Engines
 
  
-- Collaborative Filtering model with Tensorflow<br>
+- **Collaborative Filtering model with Tensorflow**<br>
 This code segment builds a collaborative filtering neural network using Tensorflow/Keras for
 recommendation systems. It utilises user and movie embeddings, concatenated and processed through dense layers with ReLU activations and dropout regularization.<br>
 This model was trained to predict movie ratings and aims to minimize the mean squared error loss.
@@ -102,7 +102,7 @@ r = model.fit(
 
 <img src="images/model.jpg?raw=true"/>
 
-- Cosine-similarity model<br>
+- **Cosine-similarity model**<br>
 This second cosine-similarity model takes inputs from users through a Streamlit interface of the movies they enjoyed watching, and saves it in variable __watched_features__. <br>
 It then compares the selected features with the features in the IMDB dataframe, and then shortlists the top 20 movies most similar to the movies inputted. These 20 movies are then sorted in accordance to descending average ratings and recommendation propensity (a metric engineered from average ratings and the age of the movie. The higher the recommendation propensity, the more recent and also popular the movie is). The user will then be recommended with the top 3 selections.
 
