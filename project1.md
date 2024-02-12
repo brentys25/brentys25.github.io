@@ -5,8 +5,11 @@
 1. To conduct data analysis on the IMDB dataset
 2. To build recommender engines to provide recommendations of movies based on user inputs
 
-**Technologies Used**:
-**_To be populated_**
+**Tech Used**:
+- requests/beautifulsoup (data scraping)
+- numpy/pandas (data manipulation)
+- matplotlib/plotly/seaborn (data visualization)
+- sklearn/tensorflow (machine learning)
 
 ## Project Outcomes
 
