@@ -12,6 +12,7 @@
 - sklearn/tensorflow (machine learning)
 
 ## Project Outcomes
+Please refer to the [following deck](/pdf/ppt) for the presentation deck that summarizes all the details stated below.
 
 ### 1. Datasets Used
 **_To be populated_**
