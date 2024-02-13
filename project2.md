@@ -19,7 +19,7 @@ The goal of this project is to use Natural Language Processing (NLP) on the corp
 ## Project Outcomes
 1000 posts each from r/machinelearning and r/statistics were scrapped. After some data cleaning, each post (title and contents) was tokenized and saved. A KMeans model is then fitted on the word tokens, and the KMeans model with the lowest inertia value was chosen.<br><br>
 
-Clusters with majority (>90%) r/statistics or majority r/machinelearning posts were identified, and the common words were analyzed:
+Clusters with majority (>90%) r/statistics or majority r/machinelearning posts were identified, and the common words were analyzed:<br><br>
 | **Cluster** | **Value Counts** | **Predominant Topic** | **Common Words**                                                                        |
 |-------------|------------------|-----------------------|-----------------------------------------------------------------------------------------|
 | 2           | 0 - 49<br>1 - 2  | r/statistics          | grad,year,school,course,algebra,class,im,statistic,stats,math                           |
