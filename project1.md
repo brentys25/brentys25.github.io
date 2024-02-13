@@ -15,7 +15,6 @@
 Please refer to the [following deck](/pdf/ppt1.pdf) for the presentation deck that summarizes all the details stated below.
 
 ### 1. Datasets Used
-**_To be populated_**
 
 1. [IMDB non-commercial datasets](https://developer.imdb.com/non-commercial-datasets/)
 2. Movie Revenue Dataset (df_revenue - scraped from www.boxofficemojo.com)
