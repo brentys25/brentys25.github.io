@@ -19,7 +19,9 @@ The goal of this project is to use Natural Language Processing (NLP) on the corp
 ## Project Outcomes
 1000 posts each from r/machinelearning and r/statistics were scrapped. After some data cleaning, each post (title and contents) was tokenized and saved. A KMeans model is then fitted on the word tokens, and the KMeans model with the lowest inertia value was chosen.<br><br>
 
-Clusters with majority (>90%) r/statistics or majority r/machinelearning posts were identified, and the common words were analyzed:<br><br>
+Clusters with majority (>90%) r/statistics or majority r/machinelearning posts were identified, and the common words were analyzed. r/statistics seems more oriented towards understanding and correctly applying statistical principles and methods, often in academic or research contexts. On the other hand, r/machinelearning is more focused on advanced machine learning techniques, practical implementation, emerging technologies, and industry trends.
+
+<br><br>
 <table>
 <thead>
 <tr>
@@ -140,6 +142,8 @@ Clusters with majority (>90%) r/statistics or majority r/machinelearning posts w
 </tr>
 </tbody>
 </table>
+<br><br>
+
 
 
 
