@@ -230,7 +230,7 @@ Clusters with majority (>90%) r/statistics or majority r/machinelearning posts w
 </table>
 <br><br>
 
-As for overlapping topics in r/statistics and r/machinelearning, it seems that there is a **common interest in learning and sharing materials** here.<br><br>
+As for overlapping topics in r/statistics and r/machinelearning, it seems that there is a **common interest in sharing learning materials** (youtube,course,recommendation, book) here.<br><br>
 
 <table>
 <thead>
@@ -255,23 +255,185 @@ As for overlapping topics in r/statistics and r/machinelearning, it seems that t
 
 ### 3. Machine Learning
 
+6 models were identified as candidates to fit a text classifier model to distinguish whether the post belongs to r/statistics or r/machinelearning.<br>
+The 6 models were:
+- LogisticRegression
+- SVC
+- DecisionTreeClassifier
+- RandomForestClassifier
+- AdaBoostClassifier
+- GradientBoostClassifier
 
+The decision tree classifier is used here in conjunction with the random forest classifier to serve as a "sanity check" . The random forest classifier is expected to perform and generalize better to the holdout set compared to the decision tree, and seeing otherwise could be signs of underlying issues in the dataset.<br>
 
+A Gridsearch was conducted, followed by the optimal parameters being taken to train on the above 6 models, and we see the results below.
+<br>
+**Grid Search:**
 ```python3
 
+#Creating the pipeline object
+pipeline = Pipeline([
+    ('tfidf', TfidfVectorizer(stop_words=stop_words)),
+    ('classifier', LogisticRegression(random_state=42))
+])
 
 
+#Defining the parameter grids for each model
+
+parameter_grids = [
+
+    {
+        'classifier__C': [0.1, 1.0, 10.0],
+        'classifier__penalty':[None,'l1','l2'],
+        'classifier__solver':['lbfgs','liblinear'],
+    },
+    {
+        'classifier': [SVC(random_state=42)],
+        'classifier__C': [0.1, 1.0, 10.0],
+        'classifier__kernel': ['linear', 'rbf', 'poly']
+    },
+    
+        {
+        'classifier': [DecisionTreeClassifier(random_state=42)],
+        'classifier__max_depth': [None, 5, 10, 20],
+        'classifier__min_samples_split': [2, 5, 10],
+        'classifier__min_samples_leaf': [1, 2, 4]
+    },
+    
+    {
+        'classifier': [RandomForestClassifier(random_state=42)],
+        'classifier__n_estimators': [100, 200, 300],
+        'classifier__max_depth': [None, 5, 10, 20]
+    },
+    
+       {
+        'classifier': [AdaBoostClassifier(random_state=42)],
+        'classifier__n_estimators': [50, 100, 200, 300],
+        'classifier__learning_rate': [0.01, 0.1, 1.0]
+    },
+    
+      {
+        'classifier': [GradientBoostingClassifier(random_state=42)],
+        'classifier__n_estimators': [50, 100, 200, 300],
+        'classifier__learning_rate': [0.01, 0.1, 1.0]
+    }
+]
 
 
+#Resetting sns gridstyle
+sns.set_style("white")
+
+#Ignoring warnings
+
+warnings.filterwarnings('ignore')
+
+
+# Perform grid search for each model
+for parameter_grid in parameter_grids:
+    grid_search = GridSearchCV(pipeline, parameter_grid, cv=5)
+    grid_search.fit(X_train, y_train)
+    
+    # Print the best parameters and the classification report
+    print("Best parameters:", grid_search.best_params_)
+    y_pred = grid_search.predict(X_test)
+    cm = confusion_matrix(y_test, y_pred, labels=grid_search.classes_)
+    print(grid_search.best_score_)
+    print(grid_search.best_estimator_)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=grid_search.classes_)
+    disp.plot()
+    plt.show()
+    print("---------------------------------------")
+    
+warnings.filterwarnings("default")
+
+
+```
+<br><br>
+
+**Model Training:**
+```python3
+#Commenting out the following code  -results of the gridsearch have been appended in table below
+
+#Resetting sns gridstyle
+sns.set_style("white")
+
+#Ignoring warnings
+
+warnings.filterwarnings('ignore')
+
+
+# Perform grid search for each model
+for parameter_grid in parameter_grids:
+    grid_search = GridSearchCV(pipeline, parameter_grid, cv=5)
+    grid_search.fit(X_train, y_train)
+    
+    # Print the best parameters and the classification report
+    print("Best parameters:", grid_search.best_params_)
+    y_pred = grid_search.predict(X_test)
+    cm = confusion_matrix(y_test, y_pred, labels=grid_search.classes_)
+    print(grid_search.best_score_)
+    print(grid_search.best_estimator_)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=grid_search.classes_)
+    disp.plot()
+    plt.show()
+    print("---------------------------------------")
+    
+warnings.filterwarnings("default")
 
 
 ```
 
+The results were seen as follows:<br>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Best Score</th>
+<th>Best Estimator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LogisticRegression</td>
+<td>0.982</td>
+<td>LogisticRegression(C=0.1, penalty=None, solver='lbfgs', random_state=42)</td>
+</tr>
+<tr>
+<td>SVC</td>
+<td>0.980</td>
+<td>SVC(C=10.0, kernel='linear', random_state=42)</td>
+</tr>
+<tr>
+<td>DecisionTreeClassifier</td>
+<td>0.964</td>
+<td>DecisionTreeClassifier(max_depth=10, min_samples_split=5, min_samples_leaf=1, random_state=42)</td>
+</tr>
+<tr>
+<td>RandomForestClassifier</td>
+<td>0.977</td>
+<td>RandomForestClassifier(n_estimators=300, max_depth=None, random_state=42)</td>
+</tr>
+<tr>
+<td>AdaBoostClassifier</td>
+<td>0.980</td>
+<td>AdaBoostClassifier(n_estimators=300, learning_rate=1.0, random_state=42)</td>
+</tr>
+<tr>
+<td>GradientBoostClassifier</td>
+<td>0.968</td>
+<td>GradientBoostingClassifier(n_estimators=300, learning_rate=0.1, random_state=42)</td>
+</tr>
+</tbody>
+</table>
+<br><br>
+The following are some conclusions that can be drawn from the above table:
+
+- DecisionTreeClassifier consistently performed the worst amongst the 6 models
+- LogisticRegression is optimal here given that it is the least computationally expensive model to train, and has great model accuracy relative to the other models
+<br><br>
+There are certain distinct keywords that are strong indicators of whether a post belongs to r/statistics or r/machinelearning (eg ai, gpt for r/machinelearning and population, sampling, hypothesis for r/statistics). This gives credence to the high accuracies of all the models across the board.
 
 ---
 
-### 4. Conclusion and Future Work
-
-**_To be populated_** 
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
