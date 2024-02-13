@@ -33,6 +33,75 @@ An additional column 'is_ml' is added to distinguish whether the post is from r/
 
 ### 2. Data Analysis & Key Insights
 
+Post titles and contents were tokenized using a TfidfVectorizer.
+'''python3
+tfidf_title = TfidfVectorizer()
+
+X_title = tfidf_title.fit_transform(df['tokenized_title'])
+'''
+
+TfidfVectorizer was used here instead of CountVectorizer because we want unique keywords relevant to each subreddit thread to stand out more, which will not be achieved if we use CountVectorizer which simply counts the number of ocurences of each word in the corpus.<br><br>
+
+We then identify the KMeans model with the lowest inertia:<br>
+'''python3
+inertia_title = []
+for i in range(1,50):
+    kmeans = KMeans(n_clusters=i,max_iter=500)
+    kmeans.fit(X_title)
+    inertia_title.append((i,kmeans.inertia_))
+
+inertia_values = [tup[1] for tup in inertia_title]
+plt.plot(range(1,50),inertia_values)
+plt.show()
+
+'''
+After identifying n=36 (elbow point), we append the cluster number to the dataframe.
+'''python3
+kmeans = KMeans(n_clusters=37,max_iter=500, random_state=42)
+kmeans.fit(X_title)
+df['title_cluster'] = kmeans.labels_
+'''
+
+Then, clusters with a majority (>90%) of either r/statistics or r/machinelearning posts were subsetted to analyze distinct differences in communities and topics amongst both subreddit threads. Clusters with a homogeneous mix (~50% of r/statistics and r/machinelearning) were also analyzed.
+'''python3
+def get_top_keywords(tfidf_matrix, clusters, feature_names, n_terms):
+    '''
+    Prints the top n terms in each cluster from the TF-IDF matrix.
+
+    Args:
+        tfidf_matrix (scipy.sparse.csr_matrix): The TF-IDF matrix.
+        clusters (numpy.ndarray): An array indicating the cluster to which each row of the TF-IDF matrix belongs.
+        feature_names (list of str): The names of the features corresponding to the columns of the TF-IDF matrix.
+        n_terms (int): The number of top terms to print for each cluster.
+
+    Returns:
+        None
+    '''
+    
+    df = pd.DataFrame(tfidf_matrix.todense()).groupby(clusters).mean()
+    for i, r in df.iterrows():
+        print('\nCluster {}'.format(i))
+        print(','.join([feature_names[t] for t in np.argsort(r)[-n_terms:]]))
+
+for i in range(36):
+  #Extracting clusters with distinct topics
+  if (df[df['title_cluster']==i].sort_values('title_cluster')['is_ml'].value_counts(normalize=True).max()>0.9) == True:
+      print(f"Cluster {i}:")
+      display(df[df['title_cluster']==i].sort_values('title_cluster')['is_ml'].value_counts())
+      get_top_keywords(X_content, kmeans_content.labels_, tfidf_content.get_feature_names_out(), 10)
+      print("\n")
+
+for i in range(36):
+  #Extracting clusters with similar topics
+    if (df_temp[df_temp['content_cluster']==i].sort_values('content_cluster')['is_ml'].value_counts(normalize=True).max()<0.6)== True:
+        print(f"Cluster {i}:")
+        display(df_temp[df_temp['content_cluster']==i].sort_values('content_cluster')['is_ml'].value_counts())
+        # Call the function to get the top keywords
+        print("\n")
+
+'''
+<br><br>
+
 Clusters with majority (>90%) r/statistics or majority r/machinelearning posts were identified, and the common words were analyzed. r/statistics seems **more oriented towards understanding and correctly applying statistical principles and methods**, often in academic or research contexts. On the other hand, r/machinelearning is more focused on advanced machine learning techniques, **practical implementation**, emerging technologies, and **industry trends**.
 
 <br><br>
@@ -183,7 +252,18 @@ As for overlapping topics in r/statistics and r/machinelearning, it seems that t
 
 ### 3. Machine Learning
 
-**_To be populated_**
+
+
+'''python3
+
+
+
+
+
+
+
+'''
+
 
 ---
 
