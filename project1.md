@@ -128,7 +128,8 @@ The following is the model architecture:
 
 - **Cosine-similarity model**<br>
 This cosine-similarity model takes inputs from users through a Streamlit interface of the movies they enjoyed watching, and saves it in variable __watched_features__. <br>
-It then compares the selected features with the features in the IMDB dataframe, and then shortlists the top 20 movies most similar to the movies inputted, and sorted in accordance to descending average ratings and recommendation propensity (a metric engineered from average ratings and the age of the movie.<br>
+It then compares the selected features with the features in the IMDB dataframe, and then shortlists the top 20 movies most similar to the movies inputted, and sorted in accordance to descending average ratings and recommendation propensity (a metric engineered from average ratings and the age of the movie.<br><br>
+
 Recommendation Propensity is calculated using the following code:<br>
 
 ```python3
