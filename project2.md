@@ -1,3 +1,31 @@
+<style>
+/* Set body to full width */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Optional: Prevent horizontal scrolling */
+}
+
+/* Set container to full width */
+.container {
+    width: 100%;
+    max-width: none; /* Ensure no max width */
+}
+
+/* Set main content to full width */
+main {
+    width: 100%;
+    max-width: none; /* Ensure no max width */
+}
+
+/* Optionally, set specific elements to full width if needed */
+.element-class {
+    width: 100%;
+    max-width: none; /* Ensure no max width */
+}
+</style>
+
 ## Project description:
 Machine learning and statistics are 2 closely related and intertwined fields, with many machine learning models being heavily based on statistical theories.<br>
 The goal of this project is to use Natural Language Processing (NLP) on the corpus of data scraped from r/statistics and r/machinelearning to explore the intersection of statistics and machine learning and gain a deeper understanding of how these two fields intertwine. After which, a text classifier will be built to classify whether the post belongs to r/machinelearning or r/statistics.
