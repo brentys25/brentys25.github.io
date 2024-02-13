@@ -1,31 +1,39 @@
-**Project description:** 
+## Project description:
 Machine learning and statistics are 2 closely related and intertwined fields, with many machine learning models being heavily based on statistical theories.<br>
 The goal of this project is to use Natural Language Processing (NLP) on the corpus of data scraped from r/statistics and r/machinelearning to explore the intersection of statistics and machine learning and gain a deeper understanding of how these two fields intertwine. After which, a text classifier will be built to classify whether the post belongs to r/machinelearning or r/statistics.
 
-<br><br>
-**Project Objectives**: 
+<br>
+---
+
+## Project Objectives: 
 1. To uncover the common and different topics and communities within the 2 subreddit threads
 2. To build a text classifier to differentiate whether a reddit post is from r/statistics or r/machinelearning
 
+<br>
+---
 
-**Tech Used**:
+## Tech Used:
 - Python Reddit API Wrapper (PRAW) (data acquisition from Reddit)
 - Pandas/numpy (data manipulation)
 - Matplotlib/seaborn (data visualization)
 - Sklearn (Machine Learning)
 - KMeans (Community detection)
 
+<br>
+---
 
 ## Project Outcomes
 1000 posts each from r/machinelearning and r/statistics were scrapped. After some data cleaning, each post (title and contents) was tokenized and saved. A KMeans model is then fitted on the word tokens, and the KMeans model with the lowest inertia value was chosen. The distinct and overlapping topics were then analyzed.
 
-<br><br>
+<br>
 
 Several models (LogisticRegression, SVC, DecisionTreeClassifier, RandomForestClassifier, AdaBoostClassifier and GradientBoostClassifier) were built for text classification, and the most optimal model built was a Logistic Regression model, considering its good performance as well as relatively low computational cost compared to the other models used.
 
+<br>
+---
 
 ### 1. Datasets Used
-1000 posts each from r/statistics and r/machinelearning were scrapped using PRAW. Features scrapped included the post timestamp, title, contents, top 10 comments (saved as an array of strings), number of upvotes, number of comments, url, tags and popularity score. <br><br>
+1000 posts each from r/statistics and r/machinelearning were scrapped using PRAW. Features scrapped included the post timestamp, title, contents, top 10 comments (saved as an array of strings), number of upvotes, number of comments, url, tags and popularity score. <br>
 
 An additional column 'is_ml' is added to distinguish whether the post is from r/machinelearning or not (ie r/statistics).<br><br>
 
@@ -40,9 +48,9 @@ tfidf_title = TfidfVectorizer()
 X_title = tfidf_title.fit_transform(df['tokenized_title'])
 ```
 
-TfidfVectorizer was used here instead of CountVectorizer because we want unique keywords relevant to each subreddit thread to stand out more, which will not be achieved if we use CountVectorizer which simply counts the number of ocurences of each word in the corpus.<br><br>
+TfidfVectorizer was used here instead of CountVectorizer because we want unique keywords relevant to each subreddit thread to stand out more, which will not be achieved if we use CountVectorizer which simply counts the number of ocurences of each word in the corpus.<br>
 
-The KMeans model with the lowest inertia was identified:<br>
+The KMeans model with the lowest _inertia_ was identified:<br>
 
 ```python3
 inertia_title = []
@@ -56,7 +64,7 @@ plt.plot(range(1,50),inertia_values)
 plt.show()
 
 ```
-After identifying n=36 (elbow point),  the cluster number was appended to the dataframe.
+<br>After identifying n=36 (elbow point),  the cluster number was appended to the dataframe.
 
 ```python3
 kmeans = KMeans(n_clusters=37,max_iter=500, random_state=42)
@@ -64,7 +72,7 @@ kmeans.fit(X_title)
 df['title_cluster'] = kmeans.labels_
 ```
 
-Then, clusters with a majority (>90%) of either r/statistics or r/machinelearning posts were subsetted to analyze distinct differences in communities and topics amongst both subreddit threads. Clusters with a homogeneous mix (~50% of r/statistics and r/machinelearning) were also analyzed.
+<br>Then, clusters with a majority (>90%) of either r/statistics or r/machinelearning posts were subsetted to analyze distinct differences in communities and topics amongst both subreddit threads. Clusters with a homogeneous mix (~50% of r/statistics and r/machinelearning) were also analyzed.
 
 ```python3
 def get_top_keywords(tfidf_matrix, clusters, feature_names, n_terms):
@@ -103,11 +111,12 @@ for i in range(36):
         print("\n")
 
 ```
-<br><br>
+<br>
 
-Clusters with majority (>90%) r/statistics or majority r/machinelearning posts were identified, and the common words were analyzed. r/statistics seems **more oriented towards understanding and correctly applying statistical principles and methods**, often in academic or research contexts. On the other hand, r/machinelearning is more focused on advanced machine learning techniques, **practical implementation**, emerging technologies, and **industry trends**.
+Clusters with majority (>90%) r/statistics or majority r/machinelearning posts were identified, and the common words were analyzed.<br>
+r/statistics seems **more oriented towards understanding and correctly applying statistical principles and methods**, often in academic or research contexts. On the other hand, r/machinelearning is more focused on advanced machine learning techniques, **practical implementation**, emerging technologies, and **industry trends**.
 
-<br><br>
+<br>
 <table>
 <thead>
 <tr>
@@ -228,9 +237,9 @@ Clusters with majority (>90%) r/statistics or majority r/machinelearning posts w
 </tr>
 </tbody>
 </table>
-<br><br>
+<br>
 
-As for overlapping topics in r/statistics and r/machinelearning, it seems that there is a **common interest in sharing learning materials** (youtube,course,recommendation, book) here.<br><br>
+As for overlapping topics in r/statistics and r/machinelearning, it seems that there is a **common interest in sharing learning materials** (youtube,course,recommendation, book) here.<br>
 
 <table>
 <thead>
@@ -250,7 +259,7 @@ As for overlapping topics in r/statistics and r/machinelearning, it seems that t
 </table>
 
 
-
+<br>
 ---
 
 ### 3. Machine Learning
@@ -266,9 +275,10 @@ The 6 models were:
 
 The decision tree classifier is used here in conjunction with the random forest classifier to serve as a "sanity check" . The random forest classifier is expected to perform and generalize better to the holdout set compared to the decision tree, and seeing otherwise could be signs of underlying issues in the dataset.<br>
 
-A Gridsearch was conducted, followed by the optimal parameters being taken to train on the above 6 models, and we see the results below.
-<br>
+A Gridsearch was conducted, followed by the optimal parameters being taken to train on the above 6 models, and we see the results below. <br><br>
+
 **Grid Search:**
+<br>
 ```python3
 
 #Creating the pipeline object
@@ -348,7 +358,7 @@ warnings.filterwarnings("default")
 
 
 ```
-<br><br>
+<br>
 
 **Model Training:**
 ```python3
@@ -425,7 +435,7 @@ The results were seen as follows:<br>
 </tr>
 </tbody>
 </table>
-<br><br>
+<br>
 The following are some conclusions that can be drawn from the above table:
 
 - DecisionTreeClassifier consistently performed the worst amongst the 6 models
