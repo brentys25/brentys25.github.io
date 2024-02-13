@@ -14,6 +14,8 @@
 ## Project Outcomes
 Please refer to the [following deck](/pdf/ppt1.pdf) for the presentation deck that summarizes all the details stated below.
 
+---
+
 ### 1. Datasets Used
 
 1. [IMDB non-commercial datasets](https://developer.imdb.com/non-commercial-datasets/)
@@ -26,6 +28,8 @@ The following shows a fact table of the datasets used (for source 1 to 3):
 <br><br>
 
 <img src="images/fact_table.png?raw=true"/>
+
+---
 
 ### 2. Data Analysis & Key Insights
 
@@ -42,6 +46,8 @@ The following shows a fact table of the datasets used (for source 1 to 3):
 4. Revenues took a hit during covid, but some movie genres see rebounds whereas some stayed flat
 
 <img src="images/P1_insight4.png?raw=true"/>
+
+---
 
 ### 3. Recommender Engines
 
@@ -125,6 +131,8 @@ recommended_movies = rec_df.loc[recommended_movie_ids].sort_values(['recommendat
 recommended_movies = recommended_movies[recommended_movies['averageRating']>=5]
 recommended_movies = recommended_movies.iloc[:3]
 ```
+
+---
 
 ### 4. Conclusion and Future Work
 
