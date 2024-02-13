@@ -3,6 +3,7 @@
 This project explores movie analytics through a Streamlit web app, leveraging IMDb and Movie Lens datasets to showcase the application of recommender systems and uncover trends in the film industry from 2013 to 2023.
 
 <br>
+
 ---
 
 ## Project Objectives: 
@@ -10,6 +11,7 @@ This project explores movie analytics through a Streamlit web app, leveraging IM
 2. To build recommender engines to provide recommendations of movies based on user inputs
    
 <br>
+
 ---
 
 ## Tech Used:
@@ -19,6 +21,7 @@ This project explores movie analytics through a Streamlit web app, leveraging IM
 - sklearn/tensorflow (machine learning)
   
 <br>
+
 ---
 
 ## Project Outcomes
