@@ -34,16 +34,17 @@ An additional column 'is_ml' is added to distinguish whether the post is from r/
 ### 2. Data Analysis & Key Insights
 
 Post titles and contents were tokenized using a TfidfVectorizer.
-'''python3
+```python3
 tfidf_title = TfidfVectorizer()
 
 X_title = tfidf_title.fit_transform(df['tokenized_title'])
-'''
+```
 
 TfidfVectorizer was used here instead of CountVectorizer because we want unique keywords relevant to each subreddit thread to stand out more, which will not be achieved if we use CountVectorizer which simply counts the number of ocurences of each word in the corpus.<br><br>
 
 We then identify the KMeans model with the lowest inertia:<br>
-'''python3
+
+```python3
 inertia_title = []
 for i in range(1,50):
     kmeans = KMeans(n_clusters=i,max_iter=500)
@@ -54,16 +55,18 @@ inertia_values = [tup[1] for tup in inertia_title]
 plt.plot(range(1,50),inertia_values)
 plt.show()
 
-'''
+```
 After identifying n=36 (elbow point), we append the cluster number to the dataframe.
-'''python3
+
+```python3
 kmeans = KMeans(n_clusters=37,max_iter=500, random_state=42)
 kmeans.fit(X_title)
 df['title_cluster'] = kmeans.labels_
-'''
+```
 
 Then, clusters with a majority (>90%) of either r/statistics or r/machinelearning posts were subsetted to analyze distinct differences in communities and topics amongst both subreddit threads. Clusters with a homogeneous mix (~50% of r/statistics and r/machinelearning) were also analyzed.
-'''python3
+
+```python3
 def get_top_keywords(tfidf_matrix, clusters, feature_names, n_terms):
     '''
     Prints the top n terms in each cluster from the TF-IDF matrix.
@@ -99,7 +102,7 @@ for i in range(36):
         # Call the function to get the top keywords
         print("\n")
 
-'''
+```
 <br><br>
 
 Clusters with majority (>90%) r/statistics or majority r/machinelearning posts were identified, and the common words were analyzed. r/statistics seems **more oriented towards understanding and correctly applying statistical principles and methods**, often in academic or research contexts. On the other hand, r/machinelearning is more focused on advanced machine learning techniques, **practical implementation**, emerging technologies, and **industry trends**.
@@ -254,7 +257,7 @@ As for overlapping topics in r/statistics and r/machinelearning, it seems that t
 
 
 
-'''python3
+```python3
 
 
 
@@ -262,7 +265,7 @@ As for overlapping topics in r/statistics and r/machinelearning, it seems that t
 
 
 
-'''
+```
 
 
 ---
