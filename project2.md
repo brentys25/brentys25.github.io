@@ -17,7 +17,21 @@ The goal of this project is to use Natural Language Processing (NLP) on the corp
 
 
 ## Project Outcomes
-1000 posts each from r/machinelearning and r/statistics were scrapped. After some data cleaning, each post (title and contents) was tokenized and saved. A KMeans model is then fitted on the word tokens, and the KMeans model with the lowest inertia value was chosen.<br><br>
+1000 posts each from r/machinelearning and r/statistics were scrapped. After some data cleaning, each post (title and contents) was tokenized and saved. A KMeans model is then fitted on the word tokens, and the KMeans model with the lowest inertia value was chosen. The distinct and overlapping topics were then analyzed.
+
+<br><br>
+
+Several models (LogisticRegression, SVC, DecisionTreeClassifier, RandomForestClassifier, AdaBoostClassifier and GradientBoostClassifier) were built for text classification, and the most optimal model built was a Logistic Regression model, considering its good performance as well as relatively low computational cost compared to the other models used.
+
+
+### 1. Datasets Used
+1000 posts each from r/statistics and r/machinelearning were scrapped using PRAW. Features scrapped included the post timestamp, title, contents, top 10 comments (saved as an array of strings), number of upvotes, number of comments, url, tags and popularity score. <br><br>
+
+An additional column 'is_ml' is added to distinguish whether the post is from r/machinelearning or not (ie r/statistics).<br><br>
+
+---
+
+### 2. Data Analysis & Key Insights
 
 Clusters with majority (>90%) r/statistics or majority r/machinelearning posts were identified, and the common words were analyzed. r/statistics seems **more oriented towards understanding and correctly applying statistical principles and methods**, often in academic or research contexts. On the other hand, r/machinelearning is more focused on advanced machine learning techniques, **practical implementation**, emerging technologies, and **industry trends**.
 
@@ -144,19 +158,26 @@ Clusters with majority (>90%) r/statistics or majority r/machinelearning posts w
 </table>
 <br><br>
 
+As for overlapping topics in r/statistics and r/machinelearning, it seems that there is a **common interest in learning and sharing materials** here.<br><br>
+
+<table>
+<thead>
+<tr>
+<th>Cluster</th>
+<th>Value Counts</th>
+<th>Common Words</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0 - 399<br>1 - 350</td>
+<td>criterion,paper,youtube,content,dataset,course,textbook,learn,book,recommendation</td>
+</tr>
+</tbody>
+</table>
 
 
-
-
-### 1. Datasets Used
-**_To be populated_**
-
----
-
-### 2. Data Analysis & Key Insights
-
-1. **There has been a steady decline of total voters in IMDb**
-**_To be populated_**
 
 ---
 
