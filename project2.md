@@ -42,7 +42,7 @@ X_title = tfidf_title.fit_transform(df['tokenized_title'])
 
 TfidfVectorizer was used here instead of CountVectorizer because we want unique keywords relevant to each subreddit thread to stand out more, which will not be achieved if we use CountVectorizer which simply counts the number of ocurences of each word in the corpus.<br><br>
 
-We then identify the KMeans model with the lowest inertia:<br>
+The KMeans model with the lowest inertia was identified:<br>
 
 ```python3
 inertia_title = []
@@ -56,7 +56,7 @@ plt.plot(range(1,50),inertia_values)
 plt.show()
 
 ```
-After identifying n=36 (elbow point), we append the cluster number to the dataframe.
+After identifying n=36 (elbow point),  the cluster number was appended to the dataframe.
 
 ```python3
 kmeans = KMeans(n_clusters=37,max_iter=500, random_state=42)
