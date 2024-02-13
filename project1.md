@@ -1,16 +1,24 @@
 
-**Project description:** This project explores movie analytics through a Streamlit web app, leveraging IMDb and Movie Lens datasets to showcase the application of recommender systems and uncover trends in the film industry from 2013 to 2023.
-<br><br>
-**Project Objectives**: 
+## Project description:
+This project explores movie analytics through a Streamlit web app, leveraging IMDb and Movie Lens datasets to showcase the application of recommender systems and uncover trends in the film industry from 2013 to 2023.
+
+<br>
+---
+
+## Project Objectives: 
 1. To conduct data analysis on the IMDB dataset
 2. To build recommender engines to provide recommendations of movies based on user inputs
-
-**Tech Used**:
+   
+<br>
+---
+## Tech Used:
 - requests/beautifulsoup (data scraping)
 - numpy/pandas (data manipulation)
 - matplotlib/plotly/seaborn (data visualization)
 - sklearn/tensorflow (machine learning)
-
+  
+<br>
+---
 ## Project Outcomes
 Please refer to the [following deck](/pdf/ppt1.pdf) for the presentation deck that summarizes all the details stated below.
 
@@ -24,7 +32,7 @@ Please refer to the [following deck](/pdf/ppt1.pdf) for the presentation deck th
 4. [Movie Lens 1m Dataset](https://grouplens.org/datasets/movielens/1m/)
 <br><br>
 For the scraping of ratings, due to the limitations in computational resources, I was not able to complete the scraping of the revenues and ratings of all the entries in dataset #1. Hence, to train the recommender engine, I used the Movie Lens 1m Dataset, which was more readily available.<br><br>
-The following shows a fact table of the datasets used (for source 1 to 3):
+The following shows a [fact table](images/fact_table.png) of the datasets used (for source 1 to 3):
 <br><br>
 
 <img src="images/fact_table.png?raw=true"/>
@@ -34,17 +42,21 @@ The following shows a fact table of the datasets used (for source 1 to 3):
 ### 2. Data Analysis & Key Insights
 
 1. **There has been a steady decline of total voters in IMDb**
+[image link here](images/P1_insight1.png)
 <img src="images/P1_insight1.png?raw=true"/>
 
 2. **Preference for certain genres have changed over the years**
+[image1 link here](images/P1_insight2_1.png)
+[image2 link here](images/P1_insight2_2.png)
 <img src="images/P1_insight2_1.png?raw=true"/>
 <img src="images/P1_insight2_2.png?raw=true"/>
 
 3. Revenue figures for successful diretors can rake up to billions of dollars
+[image link here](images/P1_insight3.png)
 <img src="images/P1_insight3.png?raw=true"/>
 
 4. Revenues took a hit during covid, but some movie genres see rebounds whereas some stayed flat
-
+[image link here](images/P1_insight4.png)
 <img src="images/P1_insight4.png?raw=true"/>
 
 ---
@@ -104,14 +116,37 @@ r = model.fit(
   )
 )
 ```
+<br>
+The following is the model architecture:
 
 <img src="images/model.jpg?raw=true"/>
 
 - **Cosine-similarity model**<br>
-This second cosine-similarity model takes inputs from users through a Streamlit interface of the movies they enjoyed watching, and saves it in variable __watched_features__. <br>
-It then compares the selected features with the features in the IMDB dataframe, and then shortlists the top 20 movies most similar to the movies inputted. These 20 movies are then sorted in accordance to descending average ratings and recommendation propensity (a metric engineered from average ratings and the age of the movie. The higher the recommendation propensity, the more recent and also popular the movie is). The user will then be recommended with the top 3 selections.
+This cosine-similarity model takes inputs from users through a Streamlit interface of the movies they enjoyed watching, and saves it in variable __watched_features__. <br>
+It then compares the selected features with the features in the IMDB dataframe, and then shortlists the top 20 movies most similar to the movies inputted, and sorted in accordance to descending average ratings and recommendation propensity (a metric engineered from average ratings and the age of the movie.<br>
+Recommendation Propensity is calculated using the following code:<br>
 
 ```python3
+#Calculation of recommendation propensity using popularity_score
+m = 1000
+C = df['averageRating'].mean() 
+
+def weighted_rating(row):
+    v = row['numVotes']
+    R = row['averageRating']
+    return (v / (v + m)) * R + (m / (v + m)) * C
+
+df['popularity_score'] = df.apply(weighted_rating, axis=1) 
+
+
+df['recommendation_propensity'] = df['popularity_score'] - (10 * ((2023 - df['startYear'])/10)) #time decay factor to penalize older movies
+df['recommendation_propensity']
+
+```
+<br>
+
+```python3
+#shortlisting, sorting and recommending selections
 watched_features = rec_df[rec_df.index.isin(watched_movie_ids)].drop(['primaryTitle', 'popularity_score', 'recommendation_propensity'], axis=1)
 
 features = rec_df.drop(['primaryTitle', 'popularity_score', 'recommendation_propensity'], axis=1)
