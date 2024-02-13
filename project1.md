@@ -11,6 +11,7 @@ This project explores movie analytics through a Streamlit web app, leveraging IM
    
 <br>
 ---
+
 ## Tech Used:
 - requests/beautifulsoup (data scraping)
 - numpy/pandas (data manipulation)
@@ -19,6 +20,7 @@ This project explores movie analytics through a Streamlit web app, leveraging IM
   
 <br>
 ---
+
 ## Project Outcomes
 Please refer to the [following deck](/pdf/ppt1.pdf) for the presentation deck that summarizes all the details stated below.
 
